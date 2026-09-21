@@ -3,6 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://sagelondon09-netizen.github.io/Sage-soap/" />
+    <meta name="theme-color" content="#354833" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Sage-Soapery | Small-Batch Soap" />
+    <meta property="og:description" content="Shop Sage-Soapery small-batch soaps in Lavender, Tea Tree, Eucalyptus, Orange, Lemongrass, and Rosemary." />
+    <meta property="og:url" content="https://sagelondon09-netizen.github.io/Sage-soap/" />
+    <script type="application/ld+json">
+    {
+      "@context":"https://schema.org",
+      "@type":"WebSite",
+      "name":"Sage-Soapery",
+      "url":"https://sagelondon09-netizen.github.io/Sage-soap/",
+      "description":"Small-batch handmade soap in six scents."
+    }
+    </script>
     <meta name="description" content="Sage-Soapery artisan soaps, thoughtfully made in small batches." />
     <title>Sage-Soapery | Small-Batch Soap</title>
     <style>
@@ -42,7 +58,7 @@
     <header class="site-header">
       <a class="brand" href="#top">SAGE-SOAPERY</a>
       <nav aria-label="Primary navigation">
-        <a href="#soaps">Soaps</a><a href="#checkout">Checkout</a><a href="#safety">Safety</a>
+        <a href="#soaps">Soaps</a><a href="#checkout">Checkout</a><a href="#shipping">Shipping</a><a href="#safety">Safety</a>
       </nav>
     </header>
 
@@ -111,6 +127,13 @@
         <p>For external use only. Contains goat milk; do not use if you have a milk allergy or sensitivity to any listed ingredient. Patch test before first use, discontinue use if irritation occurs, and keep out of reach of children.</p>
       </section>
 
+      <section class="notice" id="shipping" aria-labelledby="shipping-title">
+        <h2 id="shipping-title">Shipping &amp; returns</h2>
+        <p><strong>Shipping:</strong> A $5 shipping charge is currently shown in the cart. Delivery timing depends on the shipping service used.</p>
+        <p><strong>Returns:</strong> Because these are personal-care products, contact the shop before sending anything back. Any return or refund decision should be confirmed by the shop owner/parent or guardian before an order is accepted.</p>
+        <p><strong>Payment &amp; tax:</strong> Live card payment and automatic tax calculation are not connected yet. The checkout currently shows a pre-tax total only.</p>
+      </section>
+
       <section class="coupon" aria-labelledby="coupon-title">
         <h2 id="coupon-title">20% off</h2>
         <p>Use coupon code:</p><code>SAGE20</code>
@@ -120,11 +143,11 @@
         <h2 id="checkout-title">Checkout</h2>
         <p>Review your soaps and enter your information below.</p>
         <div class="checkout-grid">
-          <div class="cart" id="cart"><div class="cart-empty">Your cart is empty. Add a soap above.</div></div>
+          <div class="cart" id="cart" aria-live="polite"><div class="cart-empty">Your cart is empty. Add a soap above.</div></div>
           <div class="form-card">
-            <label for="name">Name</label><input id="name" autocomplete="name" />
-            <label for="email">Email</label><input id="email" type="email" autocomplete="email" />
-            <label for="address">Shipping address</label><input id="address" autocomplete="street-address" />
+            <label for="name">Name</label><input id="name" autocomplete="name" required />
+            <label for="email">Email</label><input id="email" type="email" autocomplete="email" required />
+            <label for="address">Shipping address</label><input id="address" autocomplete="street-address" required />
             <div class="payment-note"><strong>Payment:</strong> The live payment button will be connected after the live payment account/link is set up. A Stripe TEST link is intentionally not used on this live site.</div>
             <button class="button dark disabled" type="button" disabled>Continue to secure payment</button>
           </div>
