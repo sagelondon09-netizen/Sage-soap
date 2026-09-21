@@ -3,88 +3,46 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Sage-Soapery artisan soaps, thoughtfully made in small batches."
-    />
+    <meta name="description" content="Sage-Soapery artisan soaps, thoughtfully made in small batches." />
     <title>Sage-Soapery | Small-Batch Soap</title>
     <style>
-      :root {
-        --sage: #6e8168;
-        --deep-sage: #354833;
-        --cream: #f7f2e8;
-        --sand: #e5dac6;
-        --ink: #263127;
-        --white: #fffdf8;
-      }
-
-      * { box-sizing: border-box; }
-      html { scroll-behavior: smooth; }
-      body {
-        margin: 0;
-        color: var(--ink);
-        background: var(--cream);
-        font-family: Georgia, "Times New Roman", serif;
-        line-height: 1.55;
-      }
-      .site-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
-        max-width: 1100px;
-        margin: auto;
-        padding: 1.25rem 1.5rem;
-      }
-      .brand { color: var(--deep-sage); font-size: 1.45rem; font-weight: 700; letter-spacing: .06em; text-decoration: none; }
-      nav a { color: var(--deep-sage); font-size: .95rem; font-weight: 700; margin-left: 1.25rem; text-decoration: none; }
-      nav a:hover, nav a:focus { text-decoration: underline; }
-      .hero {
-        min-height: 390px;
-        display: grid;
-        place-items: center;
-        padding: 4rem 1.5rem;
-        text-align: center;
-        color: var(--white);
-        background: linear-gradient(135deg, rgba(42, 63, 43, .94), rgba(110, 129, 104, .84));
-      }
-      .hero-content { max-width: 720px; }
-      .eyebrow { margin: 0; color: #dbe5d2; font-family: Arial, sans-serif; font-size: .78rem; font-weight: bold; letter-spacing: .16em; text-transform: uppercase; }
-      h1 { margin: .55rem 0 1rem; font-size: clamp(2.5rem, 6vw, 4.6rem); line-height: 1.05; }
-      .hero p { font-size: 1.15rem; margin: 0 auto 1.7rem; max-width: 600px; }
-      .button { display: inline-block; padding: .75rem 1.15rem; color: var(--deep-sage); background: #e8efde; border: 2px solid #e8efde; border-radius: 999px; font-family: Arial, sans-serif; font-size: .9rem; font-weight: bold; text-decoration: none; }
-      .button:hover, .button:focus { background: transparent; color: var(--white); }
-      main { max-width: 1100px; margin: auto; padding: 4rem 1.5rem; }
-      h2 { color: var(--deep-sage); font-size: clamp(1.8rem, 3vw, 2.5rem); margin: 0 0 .4rem; text-align: center; }
-      .section-intro { margin: 0 auto 2.2rem; max-width: 630px; text-align: center; }
-      .soap-grid { display: grid; gap: 1.4rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
-      .soap-card { display: flex; flex-direction: column; min-height: 100%; overflow: hidden; background: var(--white); border: 1px solid #d6ccb9; border-radius: 15px; box-shadow: 0 5px 15px rgba(53, 72, 51, .08); }
-      .soap-color { height: 132px; background: var(--sand); }
-      .soap-card:nth-child(2) .soap-color { background: #b9c9ae; }
-      .soap-card:nth-child(3) .soap-color { background: #d6b49b; }
-      .soap-card:nth-child(4) .soap-color { background: #b5c6c0; }
-      .soap-card-content { display: flex; flex: 1; flex-direction: column; padding: 1.25rem; }
-      .soap-card h3 { color: var(--deep-sage); font-size: 1.35rem; margin: 0 0 .35rem; }
-      .soap-card p { margin: 0 0 1rem; }
-      .ingredients { margin-top: auto; padding-top: .9rem; border-top: 1px solid #e2dacb; font-family: Arial, sans-serif; font-size: .85rem; }
-      .ingredients strong { color: var(--deep-sage); }
-      .notice { margin: 3.6rem auto 0; max-width: 830px; padding: 1.4rem 1.5rem; background: #e8efde; border-left: 5px solid var(--sage); border-radius: 0 10px 10px 0; }
-      .notice h2 { font-size: 1.35rem; text-align: left; }
-      .notice p { margin: .4rem 0 0; }
-      .coupon { margin: 3.6rem auto 0; max-width: 830px; padding: 2.1rem 1.5rem; color: var(--white); background: var(--deep-sage); border-radius: 15px; text-align: center; }
-      .coupon h2 { color: var(--white); }
-      .coupon code { display: inline-block; margin-top: .7rem; padding: .3rem .55rem; background: var(--white); color: var(--deep-sage); border-radius: 4px; font-family: Arial, sans-serif; font-weight: bold; letter-spacing: .08em; }
-      footer { padding: 2rem 1.5rem; color: #eff3e9; background: #263127; text-align: center; }
-      footer p { margin: 0; font-size: .9rem; }
-      @media (max-width: 520px) { .site-header { align-items: flex-start; flex-direction: column; } nav a { margin: 0 1rem 0 0; } }
+      :root { --sage:#6e8168; --deep-sage:#354833; --cream:#f7f2e8; --sand:#e5dac6; --ink:#263127; --white:#fffdf8; }
+      *{box-sizing:border-box} html{scroll-behavior:smooth}
+      body{margin:0;color:var(--ink);background:var(--cream);font-family:Georgia,"Times New Roman",serif;line-height:1.55}
+      .site-header{display:flex;align-items:center;justify-content:space-between;gap:1rem;max-width:1100px;margin:auto;padding:1.25rem 1.5rem}
+      .brand{color:var(--deep-sage);font-size:1.45rem;font-weight:700;letter-spacing:.06em;text-decoration:none}
+      nav a{color:var(--deep-sage);font-size:.95rem;font-weight:700;margin-left:1.25rem;text-decoration:none}
+      nav a:hover,nav a:focus{text-decoration:underline}
+      .hero{min-height:390px;display:grid;place-items:center;padding:4rem 1.5rem;text-align:center;color:var(--white);background:linear-gradient(135deg,rgba(42,63,43,.94),rgba(110,129,104,.84))}
+      .hero-content{max-width:720px}.eyebrow{margin:0;color:#dbe5d2;font-family:Arial,sans-serif;font-size:.78rem;font-weight:bold;letter-spacing:.16em;text-transform:uppercase}
+      h1{margin:.55rem 0 1rem;font-size:clamp(2.5rem,6vw,4.6rem);line-height:1.05}.hero p{font-size:1.15rem;margin:0 auto 1.7rem;max-width:600px}
+      .button{display:inline-block;padding:.75rem 1.15rem;color:var(--deep-sage);background:#e8efde;border:2px solid #e8efde;border-radius:999px;font-family:Arial,sans-serif;font-size:.9rem;font-weight:bold;text-decoration:none;cursor:pointer}
+      .button:hover,.button:focus{background:transparent;color:var(--white)}
+      .button.dark{background:var(--deep-sage);border-color:var(--deep-sage);color:var(--white)} .button.dark:hover{background:var(--sage);border-color:var(--sage);color:var(--white)}
+      main{max-width:1100px;margin:auto;padding:4rem 1.5rem} h2{color:var(--deep-sage);font-size:clamp(1.8rem,3vw,2.5rem);margin:0 0 .4rem;text-align:center}
+      .section-intro{margin:0 auto 2.2rem;max-width:630px;text-align:center}
+      .soap-grid{display:grid;gap:1.4rem;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+      .soap-card{display:flex;flex-direction:column;min-height:100%;overflow:hidden;background:var(--white);border:1px solid #d6ccb9;border-radius:15px;box-shadow:0 5px 15px rgba(53,72,51,.08)}
+      .soap-color{height:132px;background:var(--sand)} .soap-card:nth-child(2) .soap-color{background:#b9c9ae}.soap-card:nth-child(3) .soap-color{background:#d6b49b}.soap-card:nth-child(4) .soap-color{background:#b5c6c0}.soap-card:nth-child(5) .soap-color{background:#d9c18d}.soap-card:nth-child(6) .soap-color{background:#b8a8c9}
+      .soap-card-content{display:flex;flex:1;flex-direction:column;padding:1.25rem}.soap-card h3{color:var(--deep-sage);font-size:1.35rem;margin:0 0 .35rem}.soap-card p{margin:0 0 1rem}
+      .ingredients{margin-top:auto;padding-top:.9rem;border-top:1px solid #e2dacb;font-family:Arial,sans-serif;font-size:.85rem}.ingredients strong{color:var(--deep-sage)}
+      .price{font-family:Arial,sans-serif;font-weight:bold;font-size:1.05rem;margin:.1rem 0 .8rem!important}.add-btn{margin-top:auto;width:100%;border:0}
+      .notice{margin:3.6rem auto 0;max-width:830px;padding:1.4rem 1.5rem;background:#e8efde;border-left:5px solid var(--sage);border-radius:0 10px 10px 0}.notice h2{font-size:1.35rem;text-align:left}.notice p{margin:.4rem 0 0}
+      .coupon{margin:3.6rem auto 0;max-width:830px;padding:2.1rem 1.5rem;color:var(--white);background:var(--deep-sage);border-radius:15px;text-align:center}.coupon h2{color:var(--white)}.coupon code{display:inline-block;margin-top:.7rem;padding:.3rem .55rem;background:var(--white);color:var(--deep-sage);border-radius:4px;font-family:Arial,sans-serif;font-weight:bold;letter-spacing:.08em}
+      .checkout{margin-top:4rem;padding:2rem;background:var(--white);border:1px solid #d6ccb9;border-radius:18px}.checkout h2{text-align:left}.checkout-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:2rem;margin-top:1.5rem}
+      .cart,.form-card{padding:1.25rem;border:1px solid #e2dacb;border-radius:12px;background:#fffdf8}.cart-row{display:flex;justify-content:space-between;gap:1rem;padding:.7rem 0;border-bottom:1px solid #e2dacb}.cart-row:last-child{border-bottom:0}
+      .cart-empty{text-align:center;padding:1.5rem;color:#687266}.totals{margin-top:1rem;padding-top:1rem;border-top:2px solid #d6ccb9;font-family:Arial,sans-serif}.total-line{display:flex;justify-content:space-between;margin:.35rem 0}.total-line.grand{font-size:1.15rem;font-weight:bold;color:var(--deep-sage)}
+      label{display:block;font-family:Arial,sans-serif;font-size:.85rem;font-weight:bold;margin:.85rem 0 .3rem}input{width:100%;padding:.75rem;border:1px solid #cfc4b2;border-radius:8px;font:inherit;background:#fff}
+      .payment-note{margin-top:1rem;padding:1rem;background:#f4eee3;border-radius:8px;font-family:Arial,sans-serif;font-size:.85rem}.disabled{opacity:.55;cursor:not-allowed}
+      footer{padding:2rem 1.5rem;color:#eff3e9;background:#263127;text-align:center} footer p{margin:0;font-size:.9rem}
+      @media(max-width:720px){.checkout-grid{grid-template-columns:1fr}} @media(max-width:520px){.site-header{align-items:flex-start;flex-direction:column}nav a{margin:0 1rem 0 0}}
     </style>
   </head>
   <body>
     <header class="site-header">
       <a class="brand" href="#top">SAGE-SOAPERY</a>
       <nav aria-label="Primary navigation">
-        <a href="#soaps">Soaps</a>
-        <a href="#safety">Safety</a>
+        <a href="#soaps">Soaps</a><a href="#checkout">Checkout</a><a href="#safety">Safety</a>
       </nav>
     </header>
 
@@ -100,38 +58,49 @@
     <main>
       <section id="soaps" aria-labelledby="soaps-title">
         <h2 id="soaps-title">The Soap Collection</h2>
-        <p class="section-intro">Every Sage-Soapery bar is made with the same carefully selected ingredients.</p>
+        <p class="section-intro">Choose your favorite scent. Each Sage-Soapery bar is $9.</p>
         <div class="soap-grid">
           <article class="soap-card">
             <div class="soap-color" aria-hidden="true"></div>
             <div class="soap-card-content">
-              <h3>Garden Sage</h3>
-              <p>An earthy green bar inspired by a quiet herb garden.</p>
+              <h3>Lavender</h3><p>A soft, floral scent for a calm-feeling wash.</p><p class="price">$9.00</p>
               <p class="ingredients"><strong>Ingredients:</strong> mica powder, soap coloring, aloe vera soap base, and goat milk soap base.</p>
+              <button class="button dark add-btn" type="button" onclick="addToCart('Lavender')">Add to cart</button>
             </div>
-          </article>
-          <article class="soap-card">
+          </article><article class="soap-card">
             <div class="soap-color" aria-hidden="true"></div>
             <div class="soap-card-content">
-              <h3>Meadow Mist</h3>
-              <p>A softly colored bar for a calm, fresh-feeling wash.</p>
+              <h3>Tea Tree</h3><p>A fresh, herbal scent with a clean feel.</p><p class="price">$9.00</p>
               <p class="ingredients"><strong>Ingredients:</strong> mica powder, soap coloring, aloe vera soap base, and goat milk soap base.</p>
+              <button class="button dark add-btn" type="button" onclick="addToCart('Tea Tree')">Add to cart</button>
             </div>
-          </article>
-          <article class="soap-card">
+          </article><article class="soap-card">
             <div class="soap-color" aria-hidden="true"></div>
             <div class="soap-card-content">
-              <h3>Sunlit Oat</h3>
-              <p>A warm, creamy bar with a gentle, sunlit look.</p>
+              <h3>Eucalyptus</h3><p>A crisp, refreshing scent inspired by eucalyptus leaves.</p><p class="price">$9.00</p>
               <p class="ingredients"><strong>Ingredients:</strong> mica powder, soap coloring, aloe vera soap base, and goat milk soap base.</p>
+              <button class="button dark add-btn" type="button" onclick="addToCart('Eucalyptus')">Add to cart</button>
             </div>
-          </article>
-          <article class="soap-card">
+          </article><article class="soap-card">
             <div class="soap-color" aria-hidden="true"></div>
             <div class="soap-card-content">
-              <h3>Blue Herb</h3>
-              <p>A cool-toned bar that brings a little calm to the sink.</p>
+              <h3>Orange</h3><p>A bright, citrusy scent with a sunny feel.</p><p class="price">$9.00</p>
               <p class="ingredients"><strong>Ingredients:</strong> mica powder, soap coloring, aloe vera soap base, and goat milk soap base.</p>
+              <button class="button dark add-btn" type="button" onclick="addToCart('Orange')">Add to cart</button>
+            </div>
+          </article><article class="soap-card">
+            <div class="soap-color" aria-hidden="true"></div>
+            <div class="soap-card-content">
+              <h3>Lemongrass</h3><p>A fresh, lemony scent with a light herbal note.</p><p class="price">$9.00</p>
+              <p class="ingredients"><strong>Ingredients:</strong> mica powder, soap coloring, aloe vera soap base, and goat milk soap base.</p>
+              <button class="button dark add-btn" type="button" onclick="addToCart('Lemongrass')">Add to cart</button>
+            </div>
+          </article><article class="soap-card">
+            <div class="soap-color" aria-hidden="true"></div>
+            <div class="soap-card-content">
+              <h3>Rosemary</h3><p>An earthy, herbal scent with a clean aroma.</p><p class="price">$9.00</p>
+              <p class="ingredients"><strong>Ingredients:</strong> mica powder, soap coloring, aloe vera soap base, and goat milk soap base.</p>
+              <button class="button dark add-btn" type="button" onclick="addToCart('Rosemary')">Add to cart</button>
             </div>
           </article>
         </div>
@@ -143,14 +112,59 @@
       </section>
 
       <section class="coupon" aria-labelledby="coupon-title">
-        <h2 id="coupon-title">A little something for your first bar</h2>
-        <p>Use this coupon for 20% off your order:</p>
-        <code>SAGE20</code>
+        <h2 id="coupon-title">20% off</h2>
+        <p>Use coupon code:</p><code>SAGE20</code>
+      </section>
+
+      <section class="checkout" id="checkout" aria-labelledby="checkout-title">
+        <h2 id="checkout-title">Checkout</h2>
+        <p>Review your soaps and enter your information below.</p>
+        <div class="checkout-grid">
+          <div class="cart" id="cart"><div class="cart-empty">Your cart is empty. Add a soap above.</div></div>
+          <div class="form-card">
+            <label for="name">Name</label><input id="name" autocomplete="name" />
+            <label for="email">Email</label><input id="email" type="email" autocomplete="email" />
+            <label for="address">Shipping address</label><input id="address" autocomplete="street-address" />
+            <div class="payment-note"><strong>Payment:</strong> The live payment button will be connected after the live payment account/link is set up. A Stripe TEST link is intentionally not used on this live site.</div>
+            <button class="button dark disabled" type="button" disabled>Continue to secure payment</button>
+          </div>
+        </div>
       </section>
     </main>
 
-    <footer>
-      <p>© 2026 Sage-Soapery. Small-batch soap made with care.</p>
-    </footer>
+    <footer><p>© 2026 Sage-Soapery. Small-batch soap made with care.</p></footer>
+
+    <script>
+      const cartItems = [];
+      const PRICE = 9;
+      const SHIPPING = 5;
+      function addToCart(name) {
+        const item = cartItems.find(x => x.name === name);
+        if (item) item.qty += 1; else cartItems.push({name, qty:1});
+        renderCart();
+        document.getElementById("checkout").scrollIntoView({behavior:"smooth"});
+      }
+      function removeFromCart(name) {
+        const index = cartItems.findIndex(x => x.name === name);
+        if (index >= 0) {
+          cartItems[index].qty -= 1;
+          if (cartItems[index].qty <= 0) cartItems.splice(index,1);
+        }
+        renderCart();
+      }
+      function renderCart() {
+        const cart = document.getElementById("cart");
+        if (!cartItems.length) { cart.innerHTML = '<div class="cart-empty">Your cart is empty. Add a soap above.</div>'; return; }
+        const subtotal = cartItems.reduce((sum,item) => sum + item.qty * PRICE, 0);
+        const discount = subtotal * 0.20;
+        const shipping = SHIPPING;
+        const total = Math.max(0, subtotal - discount + shipping);
+        cart.innerHTML = cartItems.map(item => '<div class="cart-row"><span>'+item.name+' × '+item.qty+'</span><button type="button" onclick="removeFromCart(\''+item.name+'\')" aria-label="Remove one '+item.name+'">−</button></div>').join('')
+          + '<div class="totals"><div class="total-line"><span>Subtotal</span><span>$'+subtotal.toFixed(2)+'</span></div>'
+          + '<div class="total-line"><span>SAGE20 (20%)</span><span>−$'+discount.toFixed(2)+'</span></div>'
+          + '<div class="total-line"><span>Shipping</span><span>$'+shipping.toFixed(2)+'</span></div>'
+          + '<div class="total-line grand"><span>Total before tax</span><span>$'+total.toFixed(2)+'</span></div></div>';
+      }
+    </script>
   </body>
 </html>
