@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sagelondon09-netizen.github.io/Sage-soap/sitemap.xml
