@@ -87,7 +87,7 @@
               <p class="stock">Custom selection</p>
               <p class="price">$9.00</p>
               <p class="ingredients"><strong>Ingredients:</strong> mica powder, soap coloring, aloe vera soap base, and goat milk soap base.</p>
-              <button class="button dark add-btn" type="button" onclick="addToCart('Choose Your Own')">Add to request</button>
+              <button class="button dark add-btn" type="button" data-add-to-request="Choose Your Own">Add to request</button>
             </div>
           </article>
           <article class="soap-card">
@@ -101,7 +101,7 @@
               <p class="stock">Mystery selection</p>
               <p class="price">$9.00</p>
               <p class="ingredients"><strong>Ingredients:</strong> mica powder, soap coloring, aloe vera soap base, and goat milk soap base.</p>
-              <button class="button dark add-btn" type="button" onclick="addToCart('Mystery Soap')">Add to request</button>
+              <button class="button dark add-btn" type="button" data-add-to-request="Mystery Soap">Add to request</button>
             </div>
           </article>
         </div>
@@ -133,45 +133,63 @@
       const PRICE = 9;
       const SHIPPING = 5;
 
-      function addToCart(name){
-        const item=cartItems.find(x=>x.name===name);
-        if(item) item.qty += 1;
-        else cartItems.push({name,qty:1});
-        renderCart();
-        document.getElementById("order-request").scrollIntoView({behavior:"smooth"});
-      }
-
-      function removeFromCart(name){
-        const index=cartItems.findIndex(x=>x.name===name);
-        if(index>=0){
-          cartItems[index].qty -= 1;
-          if(cartItems[index].qty<=0) cartItems.splice(index,1);
-        }
-        renderCart();
-      }
-
       function renderCart(){
         const cart=document.getElementById("cart");
         const itemsField=document.getElementById("order-items");
         const estimateField=document.getElementById("order-estimate");
+        if(!cart || !itemsField || !estimateField) return;
+
         if(!cartItems.length){
           cart.innerHTML='<div class="cart-empty">🧼 Your order request is empty.<br><span class="request-help">Add a soap above to get started.</span></div>';
           itemsField.value="";
           estimateField.value="";
           return;
         }
+
         const subtotal=cartItems.reduce((sum,item)=>sum+item.qty*PRICE,0);
         const estimate=subtotal+SHIPPING;
         itemsField.value=cartItems.map(item=>item.name+" × "+item.qty).join(", ");
         estimateField.value="$"+estimate.toFixed(2)+" (includes $"+SHIPPING.toFixed(2)+" shipping)";
-        cart.innerHTML=cartItems.map(item=>'<div class="cart-row"><span>'+item.name+' × '+item.qty+'</span><button type="button" onclick="removeFromCart(\''+item.name+'\')" aria-label="Remove one '+item.name+'">−</button></div>').join('')+
-          '<div class="totals"><div class="total-line"><span>Soap subtotal</span><span>$'+subtotal.toFixed(2)+'</span></div><div class="total-line"><span>Shipping estimate</span><span>$'+SHIPPING.toFixed(2)+'</span></div><div class="total-line grand"><span>Order estimate</span><span>$'+estimate.toFixed(2)+'</span></div></div>';
+
+        cart.innerHTML=cartItems.map(item=>
+          '<div class="cart-row"><span>'+item.name+' × '+item.qty+'</span><button type="button" class="remove-request" data-remove-request="'+item.name+'" aria-label="Remove one '+item.name+'">−</button></div>'
+        ).join('')+
+        '<div class="totals"><div class="total-line"><span>Soap subtotal</span><span>$'+subtotal.toFixed(2)+'</span></div><div class="total-line"><span>Shipping estimate</span><span>$'+SHIPPING.toFixed(2)+'</span></div><div class="total-line grand"><span>Order estimate</span><span>$'+estimate.toFixed(2)+'</span></div></div>';
       }
+
+      function addToCart(name){
+        const existing=cartItems.find(item=>item.name===name);
+        if(existing) existing.qty += 1;
+        else cartItems.push({name:name,qty:1});
+        renderCart();
+        const section=document.getElementById("order-request");
+        if(section) section.scrollIntoView({behavior:"smooth",block:"start"});
+      }
+
+      function removeFromCart(name){
+        const index=cartItems.findIndex(item=>item.name===name);
+        if(index===-1) return;
+        cartItems[index].qty -= 1;
+        if(cartItems[index].qty<=0) cartItems.splice(index,1);
+        renderCart();
+      }
+
+      document.addEventListener("click",function(event){
+        const addButton=event.target.closest("[data-add-to-request]");
+        if(addButton){
+          addToCart(addButton.getAttribute("data-add-to-request"));
+          return;
+        }
+        const removeButton=event.target.closest("[data-remove-request]");
+        if(removeButton){
+          removeFromCart(removeButton.getAttribute("data-remove-request"));
+        }
+      });
 
       document.getElementById("order-form").addEventListener("submit",function(event){
         if(!cartItems.length){
           event.preventDefault();
-          alert("Please add at least one soap.");
+          alert("Please add at least one soap before sending your request.");
           return;
         }
         renderCart();
