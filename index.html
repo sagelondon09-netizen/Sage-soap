@@ -40,7 +40,7 @@
       .section-intro{margin:0 auto 2.2rem;max-width:630px;text-align:center}
       .soap-grid{display:grid;gap:1.4rem;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
       .soap-card{display:flex;flex-direction:column;min-height:100%;overflow:hidden;background:var(--white);border:1px solid #d6ccb9;border-radius:15px;box-shadow:0 5px 15px rgba(53,72,51,.08)}
-      .soap-color{height:132px;background:var(--sand);display:grid;place-items:center;color:var(--deep-sage);font-family:Arial,sans-serif;font-weight:700;font-size:.8rem;text-align:center;padding:1rem}.stock{display:inline-block;margin:.1rem 0 .7rem;padding:.2rem .5rem;background:#e8efde;color:var(--deep-sage);border-radius:999px;font-family:Arial,sans-serif;font-size:.75rem;font-weight:700}.shipping-estimate{font-family:Arial,sans-serif;font-size:.88rem} .soap-card:nth-child(2) .soap-color{background:#b9c9ae}.soap-card:nth-child(3) .soap-color{background:#d6b49b}.soap-card:nth-child(4) .soap-color{background:#b5c6c0}.soap-card:nth-child(5) .soap-color{background:#d9c18d}.soap-card:nth-child(6) .soap-color{background:#b8a8c9}
+      .soap-color{height:220px;background:var(--sand);display:grid;place-items:center;color:var(--deep-sage);font-family:Arial,sans-serif;font-weight:700;font-size:.8rem;text-align:center;overflow:hidden}.soap-color img{width:100%;height:100%;object-fit:cover;display:block}.stock{display:inline-block;margin:.1rem 0 .7rem;padding:.2rem .5rem;background:#e8efde;color:var(--deep-sage);border-radius:999px;font-family:Arial,sans-serif;font-size:.75rem;font-weight:700}.shipping-estimate{font-family:Arial,sans-serif;font-size:.88rem} .soap-card:nth-child(2) .soap-color{background:#b9c9ae}.soap-card:nth-child(3) .soap-color{background:#d6b49b}.soap-card:nth-child(4) .soap-color{background:#b5c6c0}.soap-card:nth-child(5) .soap-color{background:#d9c18d}.soap-card:nth-child(6) .soap-color{background:#b8a8c9}
       .soap-card-content{display:flex;flex:1;flex-direction:column;padding:1.25rem}.soap-card h3{color:var(--deep-sage);font-size:1.35rem;margin:0 0 .35rem}.soap-card p{margin:0 0 1rem}
       .ingredients{margin-top:auto;padding-top:.9rem;border-top:1px solid #e2dacb;font-family:Arial,sans-serif;font-size:.85rem}.ingredients strong{color:var(--deep-sage)}
       .price{font-family:Arial,sans-serif;font-weight:bold;font-size:1.05rem;margin:.1rem 0 .8rem!important}.add-btn{margin-top:auto;width:100%;border:0}
@@ -74,24 +74,30 @@
     <main>
       <section id="soaps" aria-labelledby="soaps-title">
         <h2 id="soaps-title">The Soap Collection</h2>
-        <p class="section-intro">Every Sage-Soapery soap can be different! Choose your own style or let us surprise you. Soaps may come in different sizes, shapes, and colors. Each soap is $9.</p>
+        <p class="section-intro">Here are real examples of our handmade soaps. They come in different sizes, shapes, and colors, so you can choose your own or let us surprise you with a mystery soap.</p>
         <div class="soap-grid">
           <article class="soap-card">
-            <div class="soap-color" aria-label="Choose your own soap option">🌸🧼<br>Choose Your Own</div>
+            <div class="soap-color" aria-label="Photo showing Sage-Soapery soaps">
+              <img src="soap-collection.jpg" alt="Sage-Soapery handmade soaps in different shapes, sizes, and colors">
+            </div>
             <div class="soap-card-content">
               <h3>Choose Your Own</h3>
-              <p>Pick the soap style you want. Tell us your preferred size, shape, or color, and we’ll confirm what is available.</p>
-              <p class="stock">Made from available soaps</p>
+              <p>Pick the kind of soap you want! Our soaps can come in <strong>different sizes, shapes, and colors</strong>. Add this option to your order request and tell us what you would like in the message.</p>
+              <p>You can request a favorite color or shape, and we’ll confirm what is available before your order is accepted.</p>
+              <p class="stock">Custom selection</p>
               <p class="price">$9.00</p>
               <p class="ingredients"><strong>Ingredients:</strong> mica powder, soap coloring, aloe vera soap base, and goat milk soap base.</p>
               <button class="button dark add-btn" type="button" onclick="addToCart('Choose Your Own')">Add to request</button>
             </div>
           </article>
           <article class="soap-card">
-            <div class="soap-color" aria-label="Mystery soap option">🎁🧼<br>Mystery Soap</div>
+            <div class="soap-color" aria-label="Photo showing Sage-Soapery mystery soaps">
+              <img src="soap-collection.jpg" alt="Sage-Soapery soaps ready for a mystery selection">
+            </div>
             <div class="soap-card-content">
               <h3>Mystery Soap</h3>
-              <p>Want a surprise? We’ll choose an available soap for you, with a surprise size, shape, and color.</p>
+              <p>Want a surprise? Choose <strong>Mystery Soap</strong> and we’ll pick an available soap for you. The size, shape, and color will be a surprise!</p>
+              <p>It’s a fun option if you want to try something different without choosing every detail yourself.</p>
               <p class="stock">Mystery selection</p>
               <p class="price">$9.00</p>
               <p class="ingredients"><strong>Ingredients:</strong> mica powder, soap coloring, aloe vera soap base, and goat milk soap base.</p>
