@@ -129,11 +129,55 @@
     </main>
     <footer><p>© 2026 Sage-Soapery. Small-batch soap made with care.</p><p style="margin-top:.65rem"><a href="privacy.html" style="color:#eff3e9;margin:0 .5rem">Privacy</a><a href="terms.html" style="color:#eff3e9;margin:0 .5rem">Terms</a><a href="404.html" style="color:#eff3e9;margin:0 .5rem">Help if a page is missing</a></p></footer>
     <script>
-      const cartItems = []; const PRICE = 9; const SHIPPING = 5;
-      function addToCart(name){const item=cartItems.find(x=>x.name===name);if(item)item.qty+=1;else cartItems.push({name,qty:1});renderCart();document.getElementById("order-request").scrollIntoView({behavior:"smooth"});}
-      function removeFromCart(name){const index=cartItems.findIndex(x=>x.name===name);if(index>=0){cartItems[index].qty-=1;if(cartItems[index].qty<=0)cartItems.splice(index,1);}renderCart();}
-      function renderCart(){const cart=document.getElementById("cart");if(!cartItems.length){cart.innerHTML='<div class="cart-empty">🧼 Your order request is empty.<br><span class="request-help">Add a soap above to get started.</span></div>';document.getElementById("order-items").value="";document.getElementById("order-estimate").value="";return;}const subtotal=cartItems.reduce((sum,item)=>sum+item.qty*PRICE,0);const shipping=SHIPPING;const estimate=subtotal+shipping;document.getElementById("order-items").value=cartItems.map(item=>item.name+" × "+item.qty).join(", ");document.getElementById("order-estimate").value="$"+estimate.toFixed(2)+" (includes $"+shipping.toFixed(2)+" shipping)";cart.innerHTML=cartItems.map(item=>'<div class="cart-row"><span>'+item.name+' × '+item.qty+'</span><button type="button" onclick="removeFromCart(\''+item.name+'\')" aria-label="Remove one '+item.name+'">−</button></div>').join('')+'<div class="totals"><div class="total-line"><span>Soap subtotal</span><span>
-      document.getElementById("order-form").addEventListener("submit",function(event){if(!cartItems.length){event.preventDefault();alert("Please add at least one soap.");return;}document.getElementById("order-items").value=cartItems.map(item=>item.name+" × "+item.qty).join(", ");const subtotal=cartItems.reduce((sum,item)=>sum+item.qty*PRICE,0);document.getElementById("order-estimate").value="$"+(subtotal+SHIPPING).toFixed(2)+" (includes $"+SHIPPING.toFixed(2)+" shipping)";});
+      const cartItems = [];
+      const PRICE = 9;
+      const SHIPPING = 5;
+
+      function addToCart(name){
+        const item=cartItems.find(x=>x.name===name);
+        if(item) item.qty += 1;
+        else cartItems.push({name,qty:1});
+        renderCart();
+        document.getElementById("order-request").scrollIntoView({behavior:"smooth"});
+      }
+
+      function removeFromCart(name){
+        const index=cartItems.findIndex(x=>x.name===name);
+        if(index>=0){
+          cartItems[index].qty -= 1;
+          if(cartItems[index].qty<=0) cartItems.splice(index,1);
+        }
+        renderCart();
+      }
+
+      function renderCart(){
+        const cart=document.getElementById("cart");
+        const itemsField=document.getElementById("order-items");
+        const estimateField=document.getElementById("order-estimate");
+        if(!cartItems.length){
+          cart.innerHTML='<div class="cart-empty">🧼 Your order request is empty.<br><span class="request-help">Add a soap above to get started.</span></div>';
+          itemsField.value="";
+          estimateField.value="";
+          return;
+        }
+        const subtotal=cartItems.reduce((sum,item)=>sum+item.qty*PRICE,0);
+        const estimate=subtotal+SHIPPING;
+        itemsField.value=cartItems.map(item=>item.name+" × "+item.qty).join(", ");
+        estimateField.value="$"+estimate.toFixed(2)+" (includes $"+SHIPPING.toFixed(2)+" shipping)";
+        cart.innerHTML=cartItems.map(item=>'<div class="cart-row"><span>'+item.name+' × '+item.qty+'</span><button type="button" onclick="removeFromCart(\''+item.name+'\')" aria-label="Remove one '+item.name+'">−</button></div>').join('')+
+          '<div class="totals"><div class="total-line"><span>Soap subtotal</span><span>$'+subtotal.toFixed(2)+'</span></div><div class="total-line"><span>Shipping estimate</span><span>$'+SHIPPING.toFixed(2)+'</span></div><div class="total-line grand"><span>Order estimate</span><span>$'+estimate.toFixed(2)+'</span></div></div>';
+      }
+
+      document.getElementById("order-form").addEventListener("submit",function(event){
+        if(!cartItems.length){
+          event.preventDefault();
+          alert("Please add at least one soap.");
+          return;
+        }
+        renderCart();
+      });
+
+      renderCart();
     </script>
   </body>
 </html>+subtotal.toFixed(2)+'</span></div><div class="total-line"><span>Shipping estimate</span><span>
