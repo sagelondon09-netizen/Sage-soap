@@ -179,7 +179,7 @@
         estimateField.value="$"+estimate.toFixed(2)+" (includes $"+SHIPPING.toFixed(2)+" shipping)";
 
         cart.innerHTML=cartItems.map(item=>
-          '<div class="cart-row"><div class="cart-item-info"><div class="cart-item-name">'+item.name+' × '+item.qty+'</div><div class="cart-description">'+item.description+'</div></div><button type="button" class="remove-request" data-remove-request="'+item.name+'" aria-label="Remove one '+item.name+'">−</button></div>'
+          '<div class="cart-row"><div class="cart-item-info"><div class="cart-item-name">'+item.name+' × '+item.qty+'</div>'+(item.name==="Choose Your Own" ? '<div class="cart-description">'+item.description+'</div>' : '')+'</div><button type="button" class="remove-request" data-remove-request="'+item.name+'" aria-label="Remove one '+item.name+'">−</button></div>'
         ).join('')+
         '<div class="totals"><div class="total-line"><span>Soap subtotal</span><span>$'+subtotal.toFixed(2)+'</span></div><div class="total-line"><span>Shipping estimate</span><span>$'+SHIPPING.toFixed(2)+'</span></div><div class="total-line grand"><span>Order estimate</span><span>$'+estimate.toFixed(2)+'</span></div></div>';
       }
