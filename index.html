@@ -72,7 +72,7 @@
       .notice{margin:3.6rem auto 0;max-width:830px;padding:1.4rem 1.5rem;background:#e8efde;border-left:5px solid var(--sage);border-radius:0 10px 10px 0}.notice h2{font-size:1.35rem;text-align:left}.notice p{margin:.4rem 0 0}
       .coupon{margin:3.6rem auto 0;max-width:830px;padding:2.1rem 1.5rem;color:var(--white);background:var(--deep-sage);border-radius:15px;text-align:center}.coupon h2{color:var(--white)}.coupon code{display:inline-block;margin-top:.7rem;padding:.3rem .55rem;background:var(--white);color:var(--deep-sage);border-radius:4px;font-family:Arial,sans-serif;font-weight:bold;letter-spacing:.08em}
       .cash-app{background:linear-gradient(135deg,#eefaff,#fff0f8);border-left-color:#78b7e8}.cash-qr{margin:1.25rem auto 0;max-width:340px;padding:1.25rem;background:#fff;border:1px solid #d6dfcf;border-radius:18px;text-align:center;box-shadow:0 5px 16px rgba(53,72,51,.08)}.cash-qr img{display:block;width:260px;max-width:100%;height:auto;margin:0 auto .9rem}.cash-qr p{margin:.35rem 0;font-family:Arial,sans-serif;font-size:.88rem}.cash-tag{display:inline-block;margin-left:.35rem;padding:.35rem .65rem;background:#fff;color:#35506b;border:1px solid #c7dceb;border-radius:999px;font-family:Arial,sans-serif;font-weight:700}.checkout{margin-top:4rem;padding:2rem;background:linear-gradient(145deg,rgba(255,253,248,.98),rgba(232,239,222,.95));border:1px solid #c9d3bf;border-radius:24px;box-shadow:0 12px 30px rgba(53,72,51,.10);position:relative;overflow:hidden}.checkout:before{content:"🧼";position:absolute;right:1.5rem;top:1rem;font-size:2.2rem;opacity:.16}.checkout h2{text-align:left;font-size:2.1rem}.checkout-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:2rem;margin-top:1.5rem}
-      .cart,.form-card{padding:1.35rem;border:1px solid #d6dfcf;border-radius:16px;background:rgba(255,253,248,.96);box-shadow:0 5px 16px rgba(53,72,51,.06)}.cart-row{display:flex;justify-content:space-between;gap:1rem;padding:.7rem 0;border-bottom:1px solid #e2dacb}.cart-row:last-child{border-bottom:0}
+      .cart,.form-card{padding:1.35rem;border:1px solid #d6dfcf;border-radius:16px;background:rgba(255,253,248,.96);box-shadow:0 5px 16px rgba(53,72,51,.06)}.cart-row{display:flex;justify-content:space-between;gap:1rem;padding:.7rem 0;border-bottom:1px solid #e2dacb}.cart-row:last-child{border-bottom:0}.cart-item-info{flex:1}.cart-item-name{font-weight:700;color:var(--deep-sage)}.cart-description{margin-top:.25rem;font-family:Arial,sans-serif;font-size:.82rem;line-height:1.45;color:#5e685e}
       .cart-empty{text-align:center;padding:1.5rem;color:#687266}.totals{margin-top:1rem;padding-top:1rem;border-top:2px solid #d6ccb9;font-family:Arial,sans-serif}.total-line{display:flex;justify-content:space-between;margin:.35rem 0}.total-line.grand{font-size:1.15rem;font-weight:bold;color:var(--deep-sage)}
       label{display:block;font-family:Arial,sans-serif;font-size:.85rem;font-weight:bold;margin:.85rem 0 .3rem}input{width:100%;padding:.75rem;border:1px solid #cfc4b2;border-radius:8px;font:inherit;background:#fff}
       .payment-note{margin-top:1rem;padding:1rem;background:#f4eee3;border-radius:8px;font-family:Arial,sans-serif;font-size:.85rem}.disabled{opacity:.55;cursor:not-allowed}.request-badge{display:inline-block;margin-bottom:.55rem;padding:.3rem .7rem;background:#dfe9d8;color:var(--deep-sage);border-radius:999px;font-family:Arial,sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.04em}.request-help{font-family:Arial,sans-serif;font-size:.86rem;color:#5e685e}.request-btn{width:100%;margin-top:1rem;padding:.9rem 1.1rem;font-size:.95rem;box-shadow:0 5px 12px rgba(53,72,51,.12)}
@@ -175,11 +175,11 @@
 
         const subtotal=cartItems.reduce((sum,item)=>sum+item.qty*PRICE,0);
         const estimate=subtotal+SHIPPING;
-        itemsField.value=cartItems.map(item=>item.name+" × "+item.qty).join(", ");
+        itemsField.value=cartItems.map(item=>item.name+" × "+item.qty+" — "+item.description).join(", ");
         estimateField.value="$"+estimate.toFixed(2)+" (includes $"+SHIPPING.toFixed(2)+" shipping)";
 
         cart.innerHTML=cartItems.map(item=>
-          '<div class="cart-row"><span>'+item.name+' × '+item.qty+'</span><button type="button" class="remove-request" data-remove-request="'+item.name+'" aria-label="Remove one '+item.name+'">−</button></div>'
+          '<div class="cart-row"><div class="cart-item-info"><div class="cart-item-name">'+item.name+' × '+item.qty+'</div><div class="cart-description">'+item.description+'</div></div><button type="button" class="remove-request" data-remove-request="'+item.name+'" aria-label="Remove one '+item.name+'">−</button></div>'
         ).join('')+
         '<div class="totals"><div class="total-line"><span>Soap subtotal</span><span>$'+subtotal.toFixed(2)+'</span></div><div class="total-line"><span>Shipping estimate</span><span>$'+SHIPPING.toFixed(2)+'</span></div><div class="total-line grand"><span>Order estimate</span><span>$'+estimate.toFixed(2)+'</span></div></div>';
       }
@@ -187,7 +187,7 @@
       function addToCart(name){
         const existing=cartItems.find(item=>item.name===name);
         if(existing) existing.qty += 1;
-        else cartItems.push({name:name,qty:1});
+        else cartItems.push({name:name,qty:1,description:name==="Choose Your Own" ? "Choose your color, shape, smell (scent), size, and other available details." : "A surprise soap selected from available sizes, shapes, colors, and scents."});
         renderCart();
         const section=document.getElementById("order-request");
         if(section) section.scrollIntoView({behavior:"smooth",block:"start"});
