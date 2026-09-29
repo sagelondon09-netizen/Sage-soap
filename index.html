@@ -186,7 +186,202 @@
         cart.innerHTML=cartItems.map(item=>
           '<div class="cart-row"><div class="cart-item-info"><div class="cart-item-name">'+item.name+' × '+item.qty+'</div>'+(item.name==="Choose Your Own" ? '<div class="cart-description">Tell us exactly what you would like:</div><div class="custom-choice-fields"><label>What color would you like?<input type="text" class="custom-choice" data-choice="color" data-item="'+item.name+'" placeholder="Example: purple"></label><label>What shape would you like?<input type="text" class="custom-choice" data-choice="shape" data-item="'+item.name+'" placeholder="Example: flower"></label><label>What scent would you like?<input type="text" class="custom-choice" data-choice="scent" data-item="'+item.name+'" placeholder="Example: lavender"></label></div>' : '')+'</div><button type="button" class="remove-request" data-remove-request="'+item.name+'" aria-label="Remove one '+item.name+'">−</button></div>'
         ).join('')+
-        '<div class="totals"><div class="total-line"><span>Soap subtotal</span><span>$'+subtotal.toFixed(2)+'</span></div><div class="total-line"><span>Shipping estimate</span><span>$'+SHIPPING.toFixed(2)+'</span></div><div class="total-line grand"><span>Order estimate</span><span>$'+estimate.toFixed(2)+'</span></div></div>';
+        '<div class="totals"><div class="total-line"><span>Soap subtotal</span><span>
+      }
+
+      function addToCart(name){
+        const existing=cartItems.find(item=>item.name===name);
+        if(existing) existing.qty += 1;
+        else cartItems.push({name:name,qty:1,description:name==="Choose Your Own" ? "Choose your color, shape, smell (scent), size, and other available details." : "A surprise soap selected from available sizes, shapes, colors, and scents."});
+        renderCart();
+        const section=document.getElementById("order-request");
+        if(section) section.scrollIntoView({behavior:"smooth",block:"start"});
+      }
+
+      function removeFromCart(name){
+        const index=cartItems.findIndex(item=>item.name===name);
+        if(index===-1) return;
+        cartItems[index].qty -= 1;
+        if(cartItems[index].qty<=0) cartItems.splice(index,1);
+        renderCart();
+      }
+
+      document.addEventListener("change",function(event){
+        const field=event.target.closest(".custom-choice");
+        if(!field) return;
+        const item=cartItems.find(item=>item.name===field.getAttribute("data-item"));
+        if(!item) return;
+        item[field.getAttribute("data-choice")]=field.value;
+        renderCart();
+        const fields=document.querySelectorAll(".custom-choice");
+        fields.forEach(f=>{
+          if(f.getAttribute("data-item")===item.name) f.value=item[f.getAttribute("data-choice")]||"";
+        });
+      });
+
+      document.addEventListener("click",function(event){
+        const addButton=event.target.closest("[data-add-to-request]");
+        if(addButton){
+          addToCart(addButton.getAttribute("data-add-to-request"));
+          return;
+        }
+        const removeButton=event.target.closest("[data-remove-request]");
+        if(removeButton){
+          removeFromCart(removeButton.getAttribute("data-remove-request"));
+        }
+      });
+
+      document.addEventListener("change",function(event){
+        const payment=event.target.closest("input[name=\"payment_method\"]");
+        if(!payment) return;
+        document.querySelectorAll(".payment-instructions").forEach(function(box){
+          box.classList.toggle("show",box.getAttribute("data-payment-instructions")===payment.value);
+        });
+      });
+
+      document.getElementById("order-form").addEventListener("submit",function(event){
+        if(!cartItems.length){
+          event.preventDefault();
+          alert("Please add at least one soap before sending your request.");
+          return;
+        }
+        renderCart();
+      });
+
+      renderCart();
+    </script>
+  </body>
+</html>+subtotal.toFixed(2)+'</span></div><div class="total-line"><span>Shipping estimate</span><span>
+      }
+
+      function addToCart(name){
+        const existing=cartItems.find(item=>item.name===name);
+        if(existing) existing.qty += 1;
+        else cartItems.push({name:name,qty:1,description:name==="Choose Your Own" ? "Choose your color, shape, smell (scent), size, and other available details." : "A surprise soap selected from available sizes, shapes, colors, and scents."});
+        renderCart();
+        const section=document.getElementById("order-request");
+        if(section) section.scrollIntoView({behavior:"smooth",block:"start"});
+      }
+
+      function removeFromCart(name){
+        const index=cartItems.findIndex(item=>item.name===name);
+        if(index===-1) return;
+        cartItems[index].qty -= 1;
+        if(cartItems[index].qty<=0) cartItems.splice(index,1);
+        renderCart();
+      }
+
+      document.addEventListener("change",function(event){
+        const field=event.target.closest(".custom-choice");
+        if(!field) return;
+        const item=cartItems.find(item=>item.name===field.getAttribute("data-item"));
+        if(!item) return;
+        item[field.getAttribute("data-choice")]=field.value;
+        renderCart();
+        const fields=document.querySelectorAll(".custom-choice");
+        fields.forEach(f=>{
+          if(f.getAttribute("data-item")===item.name) f.value=item[f.getAttribute("data-choice")]||"";
+        });
+      });
+
+      document.addEventListener("click",function(event){
+        const addButton=event.target.closest("[data-add-to-request]");
+        if(addButton){
+          addToCart(addButton.getAttribute("data-add-to-request"));
+          return;
+        }
+        const removeButton=event.target.closest("[data-remove-request]");
+        if(removeButton){
+          removeFromCart(removeButton.getAttribute("data-remove-request"));
+        }
+      });
+
+      document.addEventListener("change",function(event){
+        const payment=event.target.closest("input[name=\"payment_method\"]");
+        if(!payment) return;
+        document.querySelectorAll(".payment-instructions").forEach(function(box){
+          box.classList.toggle("show",box.getAttribute("data-payment-instructions")===payment.value);
+        });
+      });
+
+      document.getElementById("order-form").addEventListener("submit",function(event){
+        if(!cartItems.length){
+          event.preventDefault();
+          alert("Please add at least one soap before sending your request.");
+          return;
+        }
+        renderCart();
+      });
+
+      renderCart();
+    </script>
+  </body>
+</html>+SHIPPING.toFixed(2)+'</span></div><div class="total-line grand"><span>Order estimate</span><span>
+      }
+
+      function addToCart(name){
+        const existing=cartItems.find(item=>item.name===name);
+        if(existing) existing.qty += 1;
+        else cartItems.push({name:name,qty:1,description:name==="Choose Your Own" ? "Choose your color, shape, smell (scent), size, and other available details." : "A surprise soap selected from available sizes, shapes, colors, and scents."});
+        renderCart();
+        const section=document.getElementById("order-request");
+        if(section) section.scrollIntoView({behavior:"smooth",block:"start"});
+      }
+
+      function removeFromCart(name){
+        const index=cartItems.findIndex(item=>item.name===name);
+        if(index===-1) return;
+        cartItems[index].qty -= 1;
+        if(cartItems[index].qty<=0) cartItems.splice(index,1);
+        renderCart();
+      }
+
+      document.addEventListener("change",function(event){
+        const field=event.target.closest(".custom-choice");
+        if(!field) return;
+        const item=cartItems.find(item=>item.name===field.getAttribute("data-item"));
+        if(!item) return;
+        item[field.getAttribute("data-choice")]=field.value;
+        renderCart();
+        const fields=document.querySelectorAll(".custom-choice");
+        fields.forEach(f=>{
+          if(f.getAttribute("data-item")===item.name) f.value=item[f.getAttribute("data-choice")]||"";
+        });
+      });
+
+      document.addEventListener("click",function(event){
+        const addButton=event.target.closest("[data-add-to-request]");
+        if(addButton){
+          addToCart(addButton.getAttribute("data-add-to-request"));
+          return;
+        }
+        const removeButton=event.target.closest("[data-remove-request]");
+        if(removeButton){
+          removeFromCart(removeButton.getAttribute("data-remove-request"));
+        }
+      });
+
+      document.addEventListener("change",function(event){
+        const payment=event.target.closest("input[name=\"payment_method\"]");
+        if(!payment) return;
+        document.querySelectorAll(".payment-instructions").forEach(function(box){
+          box.classList.toggle("show",box.getAttribute("data-payment-instructions")===payment.value);
+        });
+      });
+
+      document.getElementById("order-form").addEventListener("submit",function(event){
+        if(!cartItems.length){
+          event.preventDefault();
+          alert("Please add at least one soap before sending your request.");
+          return;
+        }
+        renderCart();
+      });
+
+      renderCart();
+    </script>
+  </body>
+</html>+estimate.toFixed(2)+'</span></div><div style="margin-top:1rem;text-align:center"><a class="button dark request-btn" href="https://buy.stripe.com/7sY5kD4uHd1T1FS6OzcAo00" target="_blank" rel="noopener">💳 Pay Now</a><p class="request-help" style="margin-top:.55rem">Click Pay Now to open secure Stripe checkout.</p></div></div>';
       }
 
       function addToCart(name){
