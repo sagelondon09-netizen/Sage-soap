@@ -135,14 +135,14 @@
       <section class="notice" id="safety" aria-labelledby="safety-title"><h2 id="safety-title">Allergy &amp; safety note</h2><p>For external use only. Contains goat milk; do not use if you have a milk allergy or sensitivity to any listed ingredient. Patch test before first use, discontinue use if irritation occurs, and keep out of reach of children.</p></section>
       <section class="notice" id="shipping" aria-labelledby="shipping-title"><h2 id="shipping-title">Shipping &amp; returns</h2><p><strong>Shipping:</strong> A $3 shipping charge is currently included in the order estimate. Estimated delivery is <strong>3–7 business days after shipment</strong>. Actual timing can vary based on the shipping service and destination.</p><p><strong>Returns:</strong> Because these are personal-care products, contact the shop before sending anything back. Any return or refund decision should be confirmed by the shop owner/parent or guardian before an order is accepted.</p><p><strong>Inventory:</strong> Product cards currently show an in-stock status. Because this is a static GitHub Pages site, shared real-time inventory tracking is not connected yet.</p></section>
             
-<section class="checkout" id="order-request" aria-labelledby="order-request-title"><h2 id="order-request-title">Checkout</h2><p>🛒 Review your soap, then click <strong>Pay Now</strong>. Stripe will collect the customer's email, soap details, and shipping address securely on the payment page.</p><div class="checkout-grid"><div class="cart" id="cart" aria-live="polite"><div class="cart-empty">🧼 Your order is empty.<br><span class="request-help">Add a soap above to get started.</span></div></div><div class="form-card"><span class="request-badge">SECURE CHECKOUT</span><div class="notice" style="margin:0;max-width:none"><h2 style="font-size:1.15rem;text-align:left">💳 Ready to pay?</h2><p>After reviewing the soap above, click <strong>Pay Now</strong>. The secure Stripe checkout will ask for the customer's:</p><ul><li>Email address</li><li>Soap details</li><li>Shipping address</li></ul><p><strong>Shipping: $3</strong></p><button class="button dark request-btn" id="pay-now-btn" type="button">💳 Pay Now</button></div></div></div></section>
+<section class="checkout" id="order-request" aria-labelledby="order-request-title"><h2 id="order-request-title">Checkout</h2><p>🛒 Review your soap choices first. Your Pay Now button will open the Stripe checkout for the <strong>exact number of soaps in your cart</strong>, plus $3 shipping.</p><div class="checkout-grid"><div class="cart" id="cart" aria-live="polite"><div class="cart-empty">🧼 Your order is empty.<br><span class="request-help">Add a soap above to get started.</span></div></div><div class="form-card"><span class="request-badge">SECURE CHECKOUT</span><div class="notice" style="margin:0;max-width:none"><h2 style="font-size:1.15rem;text-align:left">💳 Ready to pay?</h2><p>After reviewing the soap above, use <strong>Copy soap details</strong>, then click <strong>Pay Now</strong>. Stripe will already have the correct number of soaps and will collect the customer's:</p><ul><li>Email address</li><li>Soap details</li><li>Shipping address</li></ul><p><strong>Shipping: $3</strong></p><button class="button dark request-btn" id="copy-order-btn" type="button">📋 Copy soap details</button><button class="button dark request-btn" id="pay-now-btn" type="button">💳 Pay Now</button></div></div></div></section>
 
       <section class="help-center" id="help" aria-labelledby="help-title">
         <h2 id="help-title">Sage-Soapery Help Center</h2>
         <p class="section-intro">Find quick answers about order requests, shipping, soap safety, and getting in touch with us.</p>
         <div class="help-grid">
-          <article class="help-card"><h3>🛒 How do I place an order request?</h3><p>Choose a soap and select <strong>Add to cart</strong>. Review your soap choices and details, then use <strong>Pay Now with Stripe</strong>.</p></article>
-          <article class="help-card"><h3>💳 What happens after I pay?</h3><p>Stripe handles the card payment. After payment, send your soap choices and shipping details to the shop so the order can be prepared and shipped.</p></article>
+          <article class="help-card"><h3>🛒 How do I place an order?</h3><p>Choose a soap and select <strong>Add to request</strong>. Review your choices, copy your soap details, then use <strong>Pay Now</strong>. Stripe will use the matching quantity.</p></article>
+          <article class="help-card"><h3>💳 What happens after I pay?</h3><p>Stripe handles the payment and collects your email, soap details, and shipping address. The Stripe checkout amount is matched to the number of soaps in your cart, plus $3 shipping.</p></article>
           <article class="help-card"><h3>🚚 Shipping</h3><p>The current cart shows a <strong>$3 shipping charge</strong>. Estimated delivery is <strong>3–7 business days after shipment</strong>. Actual timing can vary.</p></article>
           <article class="help-card"><h3>↩️ Returns &amp; refunds</h3><p>Because soap is a personal-care product, contact the shop before returning anything. Return or refund decisions should be confirmed by the shop owner/parent or guardian.</p></article>
           <article class="help-card"><h3>📦 Inventory</h3><p>Product listings currently show whether an item is available. Shared real-time stock tracking will require a connected store or inventory service.</p></article><article class="help-card"><h3>🧼 Ingredients</h3><p>Our listed ingredients are <strong>mica powder, soap coloring, aloe vera soap base, and goat milk soap base</strong>.</p></article>
@@ -241,13 +241,46 @@
 
       
 
+      const STRIPE_LINKS = {"1":"https://buy.stripe.com/8x24gzd1de5XdoAc8TcAo01","2":"https://buy.stripe.com/14AcN54uH6DvdoA2yjcAo02","3":"https://buy.stripe.com/14A00j2mz0f75W87SDcAo03","4":"https://buy.stripe.com/dRm8wP2mz6DvacodcXcAo04","5":"https://buy.stripe.com/bJebJ1e5hge5gAM5KvcAo05","6":"https://buy.stripe.com/cNi14nd1daTL1FS8WHcAo06","7":"https://buy.stripe.com/aFaaEX4uH9PH3O02yjcAo07","8":"https://buy.stripe.com/aFafZh7GT7Hz70ceh1cAo08","9":"https://buy.stripe.com/28E5kDf9ld1Taco6OzcAo09","10":"https://buy.stripe.com/bJedR99P16DvesE3CncAo0a","11":"https://buy.stripe.com/aFa5kDbX9ge50BO7SDcAo0b","12":"https://buy.stripe.com/dRm6oHe5h3rj2JWeh1cAo0c","13":"https://buy.stripe.com/14AfZh7GT8LD70c2yjcAo0d","14":"https://buy.stripe.com/eVq6oHe5hge50BOa0LcAo0e","15":"https://buy.stripe.com/9B65kD5yLfa11FS0qbcAo0f","16":"https://buy.stripe.com/aFa7sL5yLge5gAMeh1cAo0g","17":"https://buy.stripe.com/28E8wP2mzbXP0BO7SDcAo0h","18":"https://buy.stripe.com/00wfZh4uH4vn98kdcXcAo0i","19":"https://buy.stripe.com/5kQ6oHgdp1jbesEdcXcAo0j","20":"https://buy.stripe.com/fZu3cve5h4vn3O0c8TcAo0k"};
+
+      function buildOrderSummary(){
+        return cartItems.map(item=>{
+          if(item.name==="Choose Your Own"){
+            return item.name+" × "+item.qty+" — Color: "+(item.color||"not specified")+", Shape: "+(item.shape||"not specified")+", Scent: "+(item.scent||"not specified");
+          }
+          return item.name+" × "+item.qty;
+        }).join("\n");
+      }
+
+      async function copyOrderDetails(){
+        if(!cartItems.length){
+          alert("Please add at least one soap first.");
+          return;
+        }
+        const summary=buildOrderSummary();
+        try{
+          await navigator.clipboard.writeText(summary);
+          alert("Copied! Paste these soap details into Stripe checkout.");
+        }catch(error){
+          window.prompt("Copy these soap details into Stripe checkout:",summary);
+        }
+      }
+
+      document.getElementById("copy-order-btn").addEventListener("click",copyOrderDetails);
+
       document.getElementById("pay-now-btn").addEventListener("click",function(){
         if(!cartItems.length){
           alert("Please add at least one soap before paying.");
           return;
         }
+        const quantity=cartItems.reduce((sum,item)=>sum+item.qty,0);
+        const link=STRIPE_LINKS[quantity];
+        if(!link){
+          alert("Please choose between 1 and 20 soaps.");
+          return;
+        }
         renderCart();
-        window.open("https://buy.stripe.com/7sY5kD4uHd1T1FS6OzcAo00","_blank","noopener");
+        window.open(link,"_blank","noopener");
       });
 
       renderCart();
